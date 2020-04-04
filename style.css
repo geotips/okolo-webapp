@@ -1,0 +1,27 @@
+.wrap {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 98vh;
+}
+
+#button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 70px;
+  background-color: #725bd6;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+}
+
+#button:hover {
+  background-color: #4426a6;
+  transition: 0.5s;
+
+}
