@@ -8,7 +8,7 @@
 
 }
 
-#button {
+#getJson {
   position: relative;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@
   color: white;
 }
 
-#button:hover {
+#getJson:hover {
   background-color: #4426a6;
   transition: 0.5s;
 }
@@ -37,7 +37,7 @@
     padding: 17px 0 0 0;
   }
 
-  #button {
+  #getJson {
     position: relative;
     display: flex;
     justify-content: center;
@@ -51,7 +51,7 @@
     color: white;
   }
 
-  #button:hover {
+  #getJson:hover {
     background-color: #4426a6;
     transition: 0.5s;
   }
@@ -67,7 +67,7 @@
     padding: 18px 0 0 0;
   }
 
-  #button {
+  #getJson {
     position: relative;
     display: flex;
     justify-content: center;
@@ -81,7 +81,7 @@
     color: white;
   }
 
-  #button:hover {
+  #getJson:hover {
     background-color: #4426a6;
     transition: 0.5s;
   }
@@ -97,7 +97,7 @@
     padding: 20px 0 0 0;
   }
 
-  #button {
+  #getJson {
     position: relative;
     display: flex;
     justify-content: center;
@@ -111,7 +111,7 @@
     color: white;
   }
 
-  #button:hover {
+  #getJson:hover {
     background-color: #4426a6;
     transition: 0.5s;
   }
