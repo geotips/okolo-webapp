@@ -11,20 +11,26 @@
       <button id="button" type="button" name="button">Submit</button>
     </div>
 
-  <script>
-    let button = document.getElementById('button');
+    <script>
+        url = "https://arcane-depths-61381.herokuapp.com/"
+        async function loadData(url = '') {
+          const response = await fetch(url);
+          return response.json()
+        }
 
-    button.onclick = btnClickHandler;
+        function init() {
+          document.querySelector('#getJson').addEventListener('click', getJ);
 
-    function btnClickHandler() {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    }
+          function getJ () {
+            navigator.geolocation.getCurrentPosition(showPosition);
 
-
-    function showPosition(position) {
-      console.log(`Latitude: ${position.coords.latitude}`);
-      console.log(`Longitude: ${position.coords.longitude}`);
-    }
-  </script>
+          function showPosition(position) {
+            loadData(url+`deliveries/${position.coords.longitude},${position.coords.latitude}`)
+                .then(console.log);
+            }
+          };
+        }
+        document.addEventListener('DOMContentLoaded', init);
+      </script>
   </body>
 </html>
