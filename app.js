@@ -6,9 +6,9 @@ let contacts;
 const company = {
   title: 'Какая-то',
   contacts: 'Какие-то',
-  infoCompany: (companyName) => {
-    title = `Название компании: ${companyName.title}`;
-    contacts = `Сайт компании: ${companyName.contacts}`;
+  infoCompany: (company) => {
+    title = `Название компании: ${company.title}`;
+    contacts = `Сайт компании: ${company.contacts}`;
 
     let divTitle = document.createElement('div');
     let divContacts = document.createElement('div');
