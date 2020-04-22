@@ -5,32 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="style.css">
+    <script src="app.js" charset="utf-8"></script>
   </head>
   <body>
     <div class="wrap">
       <button id="getJson" type="button" name="button">Submit</button>
     </div>
 
-    <script>
-        url = "https://arcane-depths-61381.herokuapp.com/"
-        async function loadData(url = '') {
-          const response = await fetch(url);
-          return response.json()
-        }
-
-        function init() {
-          document.querySelector('#getJson').addEventListener('click', getJ);
-
-          function getJ () {
-            navigator.geolocation.getCurrentPosition(showPosition);
-
-          function showPosition(position) {
-            loadData(url+`deliveries/${position.coords.longitude},${position.coords.latitude}`)
-                .then(console.log);
-            }
-          };
-        }
-        document.addEventListener('DOMContentLoaded', init);
-      </script>
   </body>
 </html>
