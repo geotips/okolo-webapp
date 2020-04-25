@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="style.css">
-    <script src="app.js" charset="utf-8"></script>
   </head>
   <body>
     <div class="wrap">
-      <button id="getJson" type="button" name="button">Submit</button>
+      <button @click="listOfCompany" id="getJson" type="button" name="button">Submit</button>
     </div>
 
+    <ul id="infoCompany">
+      <li v-for="item in items" :key="item.message">
+        {{ item.message }}
+      </li>
+    </ul>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="app.js" charset="utf-8"></script>
   </body>
 </html>
