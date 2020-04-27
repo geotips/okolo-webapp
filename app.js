@@ -24,8 +24,8 @@ url = "https://arcane-depths-61381.herokuapp.com/"
 //
 //   }
 // }
-let infoCompany = new Vue({
-  el: '#infoCompany',
+let getInfoCompany = new Vue({
+  el: '#getInfoCompany',
   data: {
     items: [
     ]
@@ -35,8 +35,11 @@ let infoCompany = new Vue({
 async function loadData(url = '') {
   const response = await fetch(url);
   const data = await response.json();
-  infoCompany.items.push({ message: data.title });
-  infoCompany.items.push({ message: data.contacts });
+
+  getInfoCompany.items = [];
+
+  getInfoCompany.items.push({ message: data.title });
+  getInfoCompany.items.push({ message: data.contacts });
 
   return data;
 }
