@@ -1,58 +1,40 @@
-url = "https://arcane-depths-61381.herokuapp.com/"
-//
-// let title;
-// let contacts;
+const url = "https://okolo-api.herokuapp.com/";
 
-// const company = {
-//   title: 'Какая-то',
-//   contacts: 'Какие-то',
-//   infoCompany: (company) => {
-//     title = `Название компании: ${company.title}`;
-//     contacts = `Сайт компании: ${company.contacts}`;
-//
-//     let divTitle = document.createElement('div');
-//     let divContacts = document.createElement('div');
-//
-//     divTitle.className = "listOfCompany";
-//     divContacts.className = "listOfCompany";
-//
-//     divTitle.innerHTML = `${title}`;
-//     divContacts.innerHTML =`${contacts}`;
-//
-//     document.body.append(divTitle);
-//     document.body.append(divContacts);
-//
-//   }
-// }
-let getInfoCompany = new Vue({
-  el: '#getInfoCompany',
+async function fetchJson(url, method = 'GET', data = null) {
+  const response = await fetch(url, {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: method === 'POST' && data !== null ? JSON.stringify(data) : null
+  });
+
+  return response.ok
+      ? response.json()
+      : response.text()
+          .then(text => Promise.reject(new Error(`Http: ${response.status}, resp: ${text}`)));
+}
+
+async function fetchDeliveries(lat, lon) {
+   return fetchJson(`${url}delivery/units/${lat},${lon}`);
+}
+
+const app = new Vue({
+  el: '#app',
   data: {
-    items: [
-    ]
-  }
-})
-
-async function loadData(url = '') {
-  const response = await fetch(url);
-  const data = await response.json();
-
-  getInfoCompany.items = [];
-
-  getInfoCompany.items.push({ message: data.title });
-  getInfoCompany.items.push({ message: data.contacts });
-
-  return data;
-}
-
-function init() {
-  document.querySelector('#getJson').addEventListener('click', getJ);
-
-  function getJ () {
-    navigator.geolocation.getCurrentPosition(showPosition);
-
-  function showPosition(position) {
-    loadData(url+`deliveries/${position.coords.longitude},${position.coords.latitude}`)
+    deliveries: [],
+    message: null
+  },
+  methods: {
+    loadDeliveries: function () {
+      navigator.geolocation.getCurrentPosition((position) => {
+        // Uncomment for testing purposes
+        // position = {coords: {longitude: 82.9783493, latitude: 54.9240101}};
+        this.message = null;
+        fetchDeliveries(position.coords.latitude, position.coords.longitude)
+            .then(ds => this.deliveries = ds)
+            .catch(e => this.message = String(e));
+      });
     }
-  };
-}
-document.addEventListener('DOMContentLoaded', init);
+  }
+});
