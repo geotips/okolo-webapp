@@ -7,30 +7,27 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="wrap">
-      <button id="getJson" type="button" name="button">Submit</button>
-    </div>
+    <section id="app">
+      <div class="wrap">
+        <button type="button" name="button"  id="getJson" v-on:click="loadDeliveries">Submit</button>
+      </div>
 
-    <script>
-        url = "https://arcane-depths-61381.herokuapp.com/"
-        async function loadData(url = '') {
-          const response = await fetch(url);
-          return response.json()
-        }
+      <p>{{ message }}</p>
 
-        function init() {
-          document.querySelector('#getJson').addEventListener('click', getJ);
+      <div id="getInfoCompany">
+        <details open v-for="delivery in deliveries" :key="delivery.name">
+          <summary>{{ delivery.name }}</summary>
+          <ul>
+            <li v-for="(value, key) in delivery.contacts">
+              {{ key }}: {{ value }}
+            </li>
+          </ul>
 
-          function getJ () {
-            navigator.geolocation.getCurrentPosition(showPosition);
+        </details>
+      </div>
+    </section>
 
-          function showPosition(position) {
-            loadData(url+`deliveries/${position.coords.longitude},${position.coords.latitude}`)
-                .then(console.log);
-            }
-          };
-        }
-        document.addEventListener('DOMContentLoaded', init);
-      </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="app.js" charset="utf-8"></script>
   </body>
 </html>
